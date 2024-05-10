@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { HousingLocationComponent } from '../housing-location/housing-location.component';
 import { Housinglocation } from '../housinglocation';
 import { CommonModule } from '@angular/common';
+import { NgModel } from '@angular/forms';
 
 @Component({
   selector: 'app-home',
@@ -33,4 +34,5 @@ export class HomeComponent {
     wifi: true,
     laundry: false
   };
+
 }
