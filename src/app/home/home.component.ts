@@ -1,10 +1,12 @@
 import { Component } from '@angular/core';
 import { HousingLocationComponent } from '../housing-location/housing-location.component';
+import { Housinglocation } from '../housinglocation';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [HousingLocationComponent],
+  imports: [CommonModule, HousingLocationComponent],
   template: `
     <section>
       <form>
@@ -19,5 +21,16 @@ import { HousingLocationComponent } from '../housing-location/housing-location.c
   styleUrl: './home.component.css'
 })
 export class HomeComponent {
+  readonly baseUrl = 'https://angular.io/assets/images/tutorials/faa';
 
+  housingLocation: Housinglocation = {
+    id:99,
+    name: 'Test Home',
+    city: 'Test City',
+    state: 'Test State',
+    photo: '${this.baseUrl}/example-house.jpg',
+    availableUnits: 99,
+    wifi: true,
+    laundry: false
+  };
 }
