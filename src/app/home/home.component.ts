@@ -21,7 +21,7 @@ import { HousingService } from '../housing.service';
         *ngFor = "let housingLocation of housingLocationList"
         [housingLocation]='housingLocation'>
       </app-housing-location>
-      <p *ngFor="let x of numbers"> {{x}}</p>
+      <!-- <p *ngFor="let x of numbers"> {{x}}</p> -->
       </section>
     </section>
   `,
@@ -30,7 +30,7 @@ import { HousingService } from '../housing.service';
 export class HomeComponent {
   readonly baseUrl = `https://angular.io/assets/images/tutorials/faa`;
 
-  numbers : number[] = Array(5).fill(3);
+  // numbers : number[] = Array(5).fill(3);
 
   housingLocation: HousingLocation = {
     id: 9999,
