@@ -9,14 +9,18 @@ import { RouterModule } from '@angular/router'
     HomeComponent,
     RouterModule
   ],
-  template: `<main>
-    <header class=brand-name>
-      <img src="/assets/logo.svg" alt="logo" class="brand-logo" aria-hidden="true">
-    </header>
+  template: `
+  <main>
+    <a [routerLink]="['/']">
+      <header class=brand-name>
+        <img src="/assets/logo.svg" alt="logo" class="brand-logo" aria-hidden="true">
+      </header>
+    </a>
     <section class="content">
       <router-outlet />
     </section>
-  </main>`,
+  </main>
+  `,
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
