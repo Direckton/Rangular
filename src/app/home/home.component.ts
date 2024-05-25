@@ -12,14 +12,15 @@ import { HousingService } from '../housing.service';
   template: `
     <section>
       <form>
-        <input type="text" placeholder="Filter by city">
-        <button class="primary" type="button">Search</button>
+        <input type="text" placeholder="Filter by city" #filter>
+        <button class="primary" type="button" 
+        (click)="filterResults(filter.value)">Search</button>
       </form>
       <section class="results">
       <!-- <app-housing-location [housingLocation]='housingLocation'></app-housing-location> -->
       <app-housing-location
-        *ngFor = "let housingLocation of housingLocationList"
-        [housingLocation]='housingLocation'>
+        *ngFor = "let housingLocation of filteredLocationList"
+        [housingLocation]="housingLocation">
       </app-housing-location>
       <!-- <p *ngFor="let x of numbers"> {{x}}</p> -->
       </section>
@@ -31,22 +32,27 @@ export class HomeComponent {
   readonly baseUrl = `https://angular.io/assets/images/tutorials/faa`;
 
   // numbers : number[] = Array(5).fill(3);
-
-  housingLocation: HousingLocation = {
-    id: 9999,
-    name: 'Test Home',
-    city: 'Test City',
-    state: 'Test State',
-    photo: `${this.baseUrl}/example-house.jpg`,
-    availableUnits: 99,
-    wifi: true,
-    laundry: false,
-  };
+  filteredLocationList: HousingLocation[] = [];
   housingLocationList: HousingLocation[] = [];
   housingService: HousingService = inject(HousingService);
 
   constructor() {
     this.housingLocationList = this.housingService.getAllHousingLocations();
+    this.filteredLocationList = this.housingLocationList;
   } 
+
+  filterResults(text: string)
+  {
+    if(!text){
+      this.filteredLocationList = this.housingLocationList;
+      return;
+    }
+
+    this.filteredLocationList = this.housingLocationList.filter(
+      housingLocation => housingLocation?.city.toLocaleLowerCase().includes(text.toLocaleLowerCase()) ||
+      housingLocation?.state.toLocaleLowerCase().includes(text.toLocaleLowerCase()) 
+    );
+
+  }
  
 }
